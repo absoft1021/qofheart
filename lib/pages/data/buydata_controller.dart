@@ -128,31 +128,45 @@ class BuydataController extends GetxController with StateMixin {
     update();
   }
 
-  Future<void> dataPlans(BuildContext ctx,int netwId, String query) async {
-    LoadingDialog(context: ctx).showLoading();
-    flist.isNotEmpty ? plans.removeRange(0, plans.length) : null;
-    plans.isNotEmpty ? plans.removeRange(0, plans.length) : null;
+  Future<void> dataPlans(BuildContext ctx, int netwId, String query) async {
+  LoadingDialog(context: ctx).showLoading();
 
-    String dataPlansUrl = 'https://qofheart.com/api/app/data_plans.php';
-    change(null, status: RxStatus.loading());
-    try {
-      final response = await Dio().get(dataPlansUrl,
-          options: Options(headers: {
-            'Authorization': "Token ${box.read('token')}",
-            'Content-Type': 'application/json'
-      }));
-      Get.back();    
-      Map data = response.data;
-      plans = data['plans'];
-      mtnLabels = data['Data'];
-      change(plans, status: RxStatus.success());
+  if (flist.isNotEmpty) flist.clear();
+  if (plans.isNotEmpty) plans.clear();
+
+  String dataPlansUrl = 'https://qofheart.com/api/app/data_plans.php';
+  change(null, status: RxStatus.loading());
+
+  try {
+    final response = await Dio().get(
+      dataPlansUrl,
+      options: Options(headers: {
+        'Authorization': "Token ${box.read('token')}",
+        'Content-Type': 'application/json'
+      }),
+    );
+
+    Get.back();
+
+    Map data = response.data;
+    plans = data['plans'];
+    mtnLabels = data['Data'];
+
+    if (query.isEmpty && mtnLabels.isNotEmpty) {
+      String q = mtnLabels[0]['Name'].toLowerCase();
+      filterPlans(q);
+    } else {
       filterPlans(query);
-      update();
-    } catch (e) {
-      change(plans, status: RxStatus.error());
-      throw Exception('failed to fetch');
     }
+
+    change(flist, status: RxStatus.success());
+    update();
+  } catch (e) {
+    Get.back();
+    change(plans, status: RxStatus.error());
+    throw Exception('Failed to fetch: $e');
   }
+}
 
   void showError(BuildContext ctx, String msg) {
     ScaffoldMessenger.of(ctx).showSnackBar(

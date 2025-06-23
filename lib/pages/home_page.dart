@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: () => homeController.changePage(index),
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),

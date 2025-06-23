@@ -44,27 +44,27 @@ class ReceiptPage extends StatelessWidget {
                   children: [
                     TableRow(children: [
                       textView('Status'),
-                      textView(Get.arguments['Status'])
+                      textView(Get.arguments['status'] ?? '')
                     ]),
                     TableRow(children: [
                       textView('Amount'),
-                      textView('NGN${Get.arguments['Amount']}'),
+                      textView("NGN${Get.arguments['amount'] ?? ''}"),
                     ]),
                     TableRow(children: [
                       textView('Desc'),
-                      textView(Get.arguments['Description'])
+                      textView(Get.arguments['desc'] ?? '')
                     ]),
                     TableRow(children: [
                       textView('Previous\nBalance'),
-                      textView("NGN${Get.arguments['PreviousBalance']}")
+                      textView("NGN${Get.arguments['newBal'] ?? ''}")
                     ]),
                     TableRow(children: [
-                      textView('OrderId'),
-                      textView(Get.arguments['OrderId'])
+                      textView('Old Balance'),
+                      textView("NGN ${Get.arguments['oldbal'] ?? ''}")
                     ]),
                     TableRow(children: [
                       textView('Date'),
-                      textView(Get.arguments['Date'])
+                      textView(Get.arguments['date'] ?? '')
                     ])
                   ],
                 ),

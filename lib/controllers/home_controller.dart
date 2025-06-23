@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:qofheart/pages/airtime_cash.dart';
 import 'package:qofheart/pages/electricity_page.dart';
-import 'package:qofheart/pages/smile_page.dart';
+import 'package:qofheart/pages/exam_page.dart';
 import 'package:qofheart/services/buy_airtime.dart';
 import 'package:qofheart/services/buy_tvsub.dart';
 import 'package:qofheart/pages/data/data_network.dart';
@@ -61,7 +61,7 @@ class HomeController extends GetxController {
     } else if (position == 2) {
       Get.to(() => const BuyTvsub());
     } else if (position == 3) {
-      Get.to(() => const SmilePage());
+      Get.to(() => ExamPage());
     } else if (position == 4) {
       Get.to(() => const ElectricityPage());
     } else if (position == 5) {
