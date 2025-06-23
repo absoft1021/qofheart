@@ -97,7 +97,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                         width: 5,
                                         height: 70,
                                         decoration: BoxDecoration(
-                                            color: Colors.green
+                                            color: Colors.green,
                                             borderRadius:
                                                 const BorderRadius.only(
                                                     topLeft:

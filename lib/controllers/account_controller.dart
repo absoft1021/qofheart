@@ -129,8 +129,8 @@ class AccountController extends GetxController {
 
         box.write('profile', user);
         box.write('token', user['token']);
-        box.write('phone', phone);
-        box.write('password', password);
+        box.write('phone', user['phone']);
+        //box.write('password', password);
         acct.value = user['bank_details'];
 
         update();
