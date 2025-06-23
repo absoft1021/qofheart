@@ -11,7 +11,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(

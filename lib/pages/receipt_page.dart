@@ -73,7 +73,7 @@ class ReceiptPage extends StatelessWidget {
                 //     onPressed: () => Get.find<HomeController>().openUrl('link'),
                 //     style: ElevatedButton.styleFrom(
                 //         foregroundColor: Colors.white,
-                //         backgroundColor: const Color(OxFF0E47A1),
+                //         backgroundColor: const Color(0xFF0E47A1),
                 //         shape: const ContinuousRectangleBorder()),
                 //     child: const Text('SHARE'))
               ],

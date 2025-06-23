@@ -29,7 +29,7 @@ class _DataPricesState extends State<DataPrices> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -55,7 +55,7 @@ class _DataPricesState extends State<DataPrices> {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: const Color(OxFF0E47A1),
+                    color: const Color(0xFF0E47A1),
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -65,7 +65,7 @@ class _DataPricesState extends State<DataPrices> {
                     width: MediaQuery.of(context).size.width / 4,
                     borderRadius: 10,
                     labels: mtn,
-                    selectedBackgroundColors: const [Color(OxFF0E47A1)],
+                    selectedBackgroundColors: const [Color(0xFF0E47A1)],
                     selectedTextStyle: GoogleFonts.poppins(color: Colors.white),
                     unSelectedTextStyle: GoogleFonts.poppins(),
                     selectedIndex: currentIndex,

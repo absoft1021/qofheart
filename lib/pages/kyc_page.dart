@@ -72,7 +72,7 @@ class KyCPage extends StatelessWidget {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(OxFF0E47A1),
+                      backgroundColor: const Color(0xFF0E47A1),
                       foregroundColor: Colors.white,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)))),

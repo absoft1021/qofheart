@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(OxFF0E47A1)),
+                          borderSide: const BorderSide(color: Color(0xFF0E47A1)),
                         ),
                       ),
                       validator: (value) =>
@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(OxFF0E47A1)),
+                          borderSide: const BorderSide(color: Color(0xFF0E47A1)),
                         ),
                       ),
                       validator: (value) =>
@@ -122,7 +122,7 @@ class LoginPage extends StatelessWidget {
                           'Forgot Password?',
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: const Color(OxFF0E47A1),
+                            color: const Color(0xFF0E47A1),
                           ),
                         ),
                       ),
@@ -140,7 +140,7 @@ class LoginPage extends StatelessWidget {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(OxFF0E47A1),
+                        backgroundColor: const Color(0xFF0E47A1),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -168,7 +168,7 @@ class LoginPage extends StatelessWidget {
                             'Register',
                             style: GoogleFonts.poppins(
                               fontSize: 14,
-                              color: const Color(OxFF0E47A1),
+                              color: const Color(0xFF0E47A1),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -192,7 +192,7 @@ class LoginPage extends StatelessWidget {
 	                                text: 'Chat with our customer care',
 	                                style: GoogleFonts.poppins(
 	                                  fontSize: 14,
-	                                  color: const Color(OxFF0E47A1),
+	                                  color: const Color(0xFF0E47A1),
 	                                  fontWeight: FontWeight.bold,
 	                                ),
 	                              ),

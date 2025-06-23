@@ -50,7 +50,7 @@ class MorePage extends StatelessWidget {
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           body: ListView(
@@ -60,7 +60,7 @@ class MorePage extends StatelessWidget {
                 leading:
                     CircleAvatar(child: Image.asset('assets/images/user.png')),
                 title: Text(
-                  controller.map['fname'].toString(),
+                  controller.user['fname'].toString() ?? 'User',
                   style: GoogleFonts.poppins(
                       fontSize: 15, fontWeight: FontWeight.bold),
                 ),
@@ -94,7 +94,7 @@ class MorePage extends StatelessWidget {
                     },
                     leading: Icon(
                       menus[index]['icon'],
-                      color: const Color(OxFF0E47A1),
+                      color: const Color(0xFF0E47A1),
                     ),
                     title: Text(
                       menus[index]['title'],

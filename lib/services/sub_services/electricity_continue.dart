@@ -37,7 +37,7 @@ class _ElectricityContinue extends State<ElectricityContinue> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -126,7 +126,7 @@ class _ElectricityContinue extends State<ElectricityContinue> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(OxFF0E47A1),
+                          backgroundColor: const Color(0xFF0E47A1),
                           foregroundColor: Colors.white,
                           shape: const RoundedRectangleBorder(
                               borderRadius:

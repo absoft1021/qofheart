@@ -52,7 +52,7 @@ class _ForgorPsswordState extends State<ForgorPssword> {
             width: Get.width,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(OxFF0E47A1),
+                    backgroundColor: const Color(0xFF0E47A1),
                     foregroundColor: Colors.white,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)))),

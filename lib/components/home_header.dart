@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qofheart/components/appConstants.dart';
+import 'package:qofheart/components/app_constants.dart';
 import 'package:qofheart/controllers/account_controller.dart';
 import 'package:qofheart/controllers/home_controller.dart';
 import 'package:qofheart/pages/add_money_page.dart';
@@ -17,7 +17,7 @@ class HomeHeader extends StatelessWidget {
   final HomeController hctrl = Get.find<HomeController>();
   final RxBool isVisible = true.obs;
 
-  const HomeHeader({super.key});
+  HomeHeader({super.key}); // Removed 'const' from constructor
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class HomeHeader extends StatelessWidget {
             hctrl: hctrl,
           ),
           const SizedBox(height: 16),
-          ActionButtonsRow(),
+          const ActionButtonsRow(),
           const SizedBox(height: 8),
         ],
       ),
@@ -117,7 +117,7 @@ class WalletBalanceSection extends StatelessWidget {
               );
             }
             return TextButton(
-              onPressed: () => Get.to(() => const KycPage()),
+              onPressed: () => Get.to(() => KycPage()),
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xFF0E47A1),
@@ -216,7 +216,7 @@ class ActionButtonsRow extends StatelessWidget {
           ActionButton(
             label: 'Bonus',
             icon: Icons.wallet,
-            onTap: () => Get.to(() => const TransferPage()),
+            onTap: () => Get.to(() => TransferPage()),
           ),
           ActionButton(
             label: 'Add Money',

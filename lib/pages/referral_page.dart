@@ -48,7 +48,7 @@ And%20use%20$phone%20as%20your%20Referral%20code
   Widget build(BuildContext context) {
     final box = GetStorage();
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           body: Column(
@@ -56,7 +56,7 @@ And%20use%20$phone%20as%20your%20Referral%20code
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.only(top: 20),
-                color: const Color(OxFF0E47A1),
+                color: const Color(0xFF0E47A1),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -114,7 +114,7 @@ And%20use%20$phone%20as%20your%20Referral%20code
                   width: double.infinity,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(OxFF0E47A1),
+                          backgroundColor: const Color(0xFF0E47A1),
                           foregroundColor: Colors.white,
                           shape: const RoundedRectangleBorder(
                               borderRadius:

@@ -26,7 +26,7 @@ class _ManualTransfer extends State<ManualTransfer> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -58,7 +58,7 @@ class _ManualTransfer extends State<ManualTransfer> {
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.greenAccent[50],
-                      border: Border.all(color: const Color(OxFF0E47A1)),
+                      border: Border.all(color: const Color(0xFF0E47A1)),
                     ),
                     child: Column(
                       children: [
@@ -70,7 +70,7 @@ class _ManualTransfer extends State<ManualTransfer> {
                           title: Text(list[i]['BankName'],
                               style: GoogleFonts.poppins(
                                   fontSize: 15,
-                                  color: const Color(OxFF0E47A1),
+                                  color: const Color(0xFF0E47A1),
                                   fontWeight: FontWeight.w600)),
                           subtitle: Text(
                               "${list[i]['AccountNumber']}\n${list[i]['Name']}",
@@ -99,7 +99,7 @@ class _ManualTransfer extends State<ManualTransfer> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(OxFF0E47A1),
+                      backgroundColor: const Color(0xFF0E47A1),
                       foregroundColor: Colors.white,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(

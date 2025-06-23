@@ -52,7 +52,7 @@ class AirtimeCash extends GetWidget<AirtimeCashController> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                 foregroundColor: Colors.white,
-                backgroundColor: const Color(OxFF0E47A1),
+                backgroundColor: const Color(0xFF0E47A1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

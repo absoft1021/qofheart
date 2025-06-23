@@ -96,8 +96,8 @@ class _BuydataState extends State<Buydata> {
                         },
                         borderRadius: BorderRadius.circular(8),
                         selectedColor: Colors.white,
-                        fillColor: const Color(OxFF0E47A1),
-                        color: const Color(OxFF0E47A1).withOpacity(0.8),
+                        fillColor: const Color(0xFF0E47A1),
+                        color: const Color(0xFF0E47A1).withOpacity(0.8),
                       ),
                     );
                   },
@@ -167,7 +167,7 @@ class _BuydataState extends State<Buydata> {
                 suffixIcon: IconButton(
                   onPressed: () => c.pickNumber(),
                   icon: const Icon(Icons.contact_phone),
-                  color: const Color(OxFF0E47A1),
+                  color: const Color(0xFF0E47A1),
                 ),
                 border: const UnderlineInputBorder(),
               ),
@@ -185,7 +185,7 @@ class _BuydataState extends State<Buydata> {
               height: 50,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color(OxFF0E47A1),
+                color: const Color(0xFF0E47A1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(

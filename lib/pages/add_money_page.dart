@@ -27,7 +27,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -49,7 +49,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.greenAccent[50],
-                      border: Border.all(color: const Color(OxFF0E47A1)),
+                      border: Border.all(color: const Color(0xFF0E47A1)),
                     ),
                     child: Column(
                       children: [
@@ -61,7 +61,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                           title: Text("${list[i]['BankName']}",
                               style: GoogleFonts.poppins(
                                   fontSize: 15,
-                                  color: const Color(OxFF0E47A1),
+                                  color: const Color(0xFF0E47A1),
                                   fontWeight: FontWeight.w600)),
                           subtitle: Text(
                             "${list[i]['AccountNumber']}\n${list[i]['Name']}",

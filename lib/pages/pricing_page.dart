@@ -22,7 +22,7 @@ class _PricingPageState extends State<PricingPage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -36,7 +36,7 @@ class _PricingPageState extends State<PricingPage> {
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
-                color: const Color(OxFF0E47A1),
+                color: const Color(0xFF0E47A1),
                 child: Row(children: [
                   const SizedBox(width: 10),
                   Text(

@@ -37,7 +37,7 @@ class _BuyDataState extends State<BuyData> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -115,7 +115,7 @@ class _BuyDataState extends State<BuyData> {
                                     length: 4,
                                     buttonBackground: Colors.transparent,
                                     indicatorProgressColor:
-                                        const Color(OxFF0E47A1),
+                                        const Color(0xFF0E47A1),
                                     indicatorBackground:
                                         const Color(0xFFB5D1D3),
                                     //    verticalSeparator: const Divider(),
@@ -157,7 +157,7 @@ class _BuyDataState extends State<BuyData> {
                       margin: const EdgeInsets.only(top: 10),
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
-                          color: Color(OxFF0E47A1),
+                          color: Color(0xFF0E47A1),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Text(
                         'Purchase',

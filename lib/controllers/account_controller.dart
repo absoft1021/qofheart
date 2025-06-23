@@ -58,7 +58,7 @@ class AccountController extends GetxController {
   }
 
   Future<void> register(BuildContext context, String fname, String lname, String email, String phone,
-      String password, String cpassword, String ref, String state, String pin) async {
+      String password, String cpassword, String state, String pin) async {
     const url = 'https://www.qofheart.com/api/app/app_register.php';
 
     try {

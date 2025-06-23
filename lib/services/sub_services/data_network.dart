@@ -19,7 +19,7 @@ class DataNetwork extends StatelessWidget {
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -142,7 +142,7 @@ class DataNetwork extends StatelessWidget {
                   height: 50,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(8),
-                  color: const Color(OxFF0E47A1),
+                  color: const Color(0xFF0E47A1),
                   child: Text(
                     'CLICK TO VIEW CODES FOR CHECKING BALANCE',
                     style: GoogleFonts.poppins(
@@ -165,7 +165,7 @@ class DataNetwork extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(OxFF0E47A1),
+          backgroundColor: const Color(0xFF0E47A1),
           foregroundColor: Colors.white,
         ),
         child: Text(text),

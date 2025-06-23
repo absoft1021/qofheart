@@ -15,7 +15,7 @@ class ExamPage extends StatelessWidget {
       'assets/images/nabteb_ic.png'
     ];
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: const Color(0xfff1f8ff),
@@ -35,7 +35,7 @@ class ExamPage extends StatelessWidget {
           ),
           body: AnnotatedRegion<SystemUiOverlayStyle>(
             value:
-                const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+                const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +120,7 @@ class ExamPage extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(OxFF0E47A1),
+                            backgroundColor: const Color(0xFF0E47A1),
                             foregroundColor: Colors.white,
                             shape: const RoundedRectangleBorder(
                                 borderRadius:

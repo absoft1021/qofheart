@@ -1,3 +1,3 @@
 class Constants {
-  var colorPrimary = OxFF0E47A1;
+  var colorPrimary = 0xFF0E47A1;
 }

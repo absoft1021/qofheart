@@ -65,7 +65,7 @@ class _BuyAirtimeState extends State<BuyAirtime> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(statusBarColor: Color(OxFF0E47A1)),
+      value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
           key: _scaffoldKey,
@@ -99,7 +99,7 @@ class _BuyAirtimeState extends State<BuyAirtime> {
                                 Text(
                                   'Select Network Provider',
                                   style: GoogleFonts.poppins(
-                                      color: const Color(OxFF0E47A1),
+                                      color: const Color(0xFF0E47A1),
                                       fontSize: 12),
                                 ),
                               ],
@@ -250,7 +250,7 @@ class _BuyAirtimeState extends State<BuyAirtime> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(OxFF0E47A1),
+                                backgroundColor: const Color(0xFF0E47A1),
                                 foregroundColor: Colors.white,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius:
@@ -290,7 +290,7 @@ class _BuyAirtimeState extends State<BuyAirtime> {
                                             buttonBackground:
                                                 Colors.transparent,
                                             indicatorProgressColor:
-                                                const Color(OxFF0E47A1),
+                                                const Color(0xFF0E47A1),
                                             indicatorBackground:
                                                 const Color(0xFFB5D1D3),
                                             //    verticalSeparator: const Divider(),
