@@ -72,7 +72,7 @@ class AccountController extends GetxController {
           "password": password,
           "cpassword": cpassword,
           "state": state,
-          "referal": ref,
+          "referal": "",
           "account": "",
           "transpin": pin
         }),

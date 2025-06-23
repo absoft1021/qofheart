@@ -117,7 +117,9 @@ class WalletBalanceSection extends StatelessWidget {
               );
             }
             return TextButton(
-              onPressed: () => Get.to(() => KycPage()),
+              onPressed: () {
+                //Get.to(() => KycPage());
+              },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xFF0E47A1),
