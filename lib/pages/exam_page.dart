@@ -1,3 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:qofheart/components/abdialog.dart';
+import 'package:qofheart/components/loading_dialog.dart';
+import 'package:qofheart/components/local_auth_api.dart';
+import 'package:qofheart/controllers/home_controller.dart';
+import 'package:custom_pin_keyboard/custom_pin_keyboard.dart';
+
 class ExamPage extends StatelessWidget {
   const ExamPage({super.key});
 

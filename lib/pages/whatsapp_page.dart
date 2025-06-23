@@ -56,7 +56,7 @@ class WhatsappPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.find<HomeController>().openUrl(
-                            "https://wa.me/+${box.read('profile')['Contact'][0]['call']}");
+                            "https://wa.me/+2348069714782");
                       },
                       child: Column(
                         children: [
@@ -76,7 +76,7 @@ class WhatsappPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () => Get.find<HomeController>()
-                          .openUrl(box.read('profile')['Contact'][0]['Group']),
+                          .openUrl('https://chat.whatsapp.com/G9XJgQrAZkwEADjB7dpUNE'),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
