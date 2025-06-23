@@ -47,7 +47,7 @@ class BuydataController extends GetxController with StateMixin {
   var currentPosition = 0;
   bool isLoading = true;
 
-  var network = ['mtnsme', 'glo', 'etisalat', 'airtel'];
+  var network = ['mtn', 'glo', 'etisalat', 'airtel'];
   void filterPlans(String plan) {
     flist = plans.where((category) {
       return category['DataType'].toLowerCase().contains(plan);
@@ -133,7 +133,7 @@ class BuydataController extends GetxController with StateMixin {
     flist.isNotEmpty ? plans.removeRange(0, plans.length) : null;
     plans.isNotEmpty ? plans.removeRange(0, plans.length) : null;
 
-    String dataPlansUrl = 'https://qofheart.com/api/data/data_plan.php';
+    String dataPlansUrl = 'https://qofheart.com/api/app/data_plans.php';
     change(null, status: RxStatus.loading());
     try {
       final response = await Dio().get(dataPlansUrl,

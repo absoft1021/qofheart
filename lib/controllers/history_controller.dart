@@ -26,7 +26,7 @@ class HistoryController extends GetxController with StateMixin {
     if (response.statusCode == 200) {
       Map data = result;
 
-      if (data['success'] == 'success') {
+      if (data['status'] == 'success') {
         history = data['data'];
         if (history.isEmpty) {
           change(null, status: RxStatus.empty());

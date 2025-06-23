@@ -61,7 +61,7 @@ class WalletBalanceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.all(0),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFF0E47A1), Color(0xFF1565C0)],

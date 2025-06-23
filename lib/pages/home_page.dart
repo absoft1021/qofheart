@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(16),
             children: [
               HomeHeader(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               _buildHelpSupport(),
               const SizedBox(height: 16),
               _buildMenuGrid(),
@@ -86,25 +86,28 @@ class _HomePageState extends State<HomePage> {
           child: Image.asset('assets/images/user.png', height: 24),
         ),
       ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            username ?? "User",
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
+      title: Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              username ?? "User",
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
-          ),
-          Text(
-            'Welcome to Qofheart',
-            style: GoogleFonts.poppins(
-              fontSize: 12,
-              color: Colors.grey[300],
+            Text(
+              'Welcome to Qofheart',
+              style: GoogleFonts.poppins(
+                fontSize: 12,
+                color: Colors.grey[300],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         IconButton(
