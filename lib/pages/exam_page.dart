@@ -165,7 +165,7 @@ class ExamPage extends StatelessWidget {
                                 final isAuthenticated = await LocalAuthApi.authenticate();
                                 if (isAuthenticated) {
                                   Get.back();
-                                  LoadingDialog().showLoading();
+                                  LoadingDialog(context: context).showLoading();
                                   await Future.delayed(const Duration(seconds: 5));
                                   Get.back();
                                   Abdialog().showDialog(msg, false);
@@ -174,7 +174,7 @@ class ExamPage extends StatelessWidget {
                               onCompleted: (passcode) async {
                                 if (passcode == box.read('pin')) {
                                   Get.back();
-                                  LoadingDialog().showLoading();
+                                  LoadingDialog(context: context).showLoading();
                                   await Future.delayed(const Duration(seconds: 5));
                                   Get.back();
                                   Abdialog().showDialog(msg, false);
