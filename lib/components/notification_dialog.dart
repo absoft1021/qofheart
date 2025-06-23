@@ -21,13 +21,13 @@ class NotificationDialog {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Notification',
+                  box.read('profile')['notifications']['subject'],
                   style: GoogleFonts.poppins(
                       fontSize: 16, fontWeight: FontWeight.bold,),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  box.read('profile')['Notification'],
+                  box.read('profile')['notifications']['message'],
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(fontSize: 15),
                 ),

@@ -53,7 +53,7 @@ class WelcomePage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF29B7FF),
+                      backgroundColor: const Color(0xFF0E47A1),
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () => Get.to(() => const RegisterPage()),

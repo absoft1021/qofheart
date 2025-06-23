@@ -37,7 +37,7 @@ class AccountController extends GetxController {
         }
 
         user = data['user'];
-        kyc.value = user['kyc'].toString();
+        kyc.value = user['kyc'].toString() ?? '';
         walletBalance.value = user['balance'].toString();
         walletBonus.value = user['bonus'].toString();
 
@@ -107,7 +107,7 @@ class AccountController extends GetxController {
     const url = 'https://qofheart.com/api/app/user_details.php';
 
     try {
-      final res = await http.post(
+      final res = await http.get(
         Uri.parse(url),
         headers: {
           'Authorization': "Bearer ${box.read('token')}" ?? '',
@@ -117,15 +117,23 @@ class AccountController extends GetxController {
 
       if (res.statusCode == 200) {
         final data = json.decode(res.body);
-        user = data['user'];
+        if (data['status'] == "fail") {
+          Get.snackbar('Error', data['msg'], margin: const EdgeInsets.all(10));
+          return;
+        }
 
-        kyc.value = data['kyc'].toString();
+        user = data['user'];
+        kyc.value = user['kyc'].toString() ?? '';
         walletBalance.value = user['balance'].toString();
-        acct.value = user['bank_details'];
+        walletBonus.value = user['bonus'].toString();
 
         box.write('profile', user);
         box.write('token', user['token']);
+        box.write('phone', phone);
+        box.write('password', password);
+        acct.value = user['bank_details'];
 
+        update();
         if (isRefresh) {
           Fluttertoast.showToast(
             msg: 'Account updated successfully',

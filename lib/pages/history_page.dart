@@ -44,7 +44,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 child: TextFormField(
                   onChanged: (value) {
                     controller.filteredList.value = controller.history
-                        .where((item) => item['Description'].contains(value))
+                        .where((item) => item['desc'].contains(value))
                         .toList();
                   },
                   decoration: InputDecoration(
@@ -97,10 +97,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                         width: 5,
                                         height: 70,
                                         decoration: BoxDecoration(
-                                            color:
-                                                item['Status'] == 'successful'
-                                                    ? Colors.green
-                                                    : Colors.redAccent,
+                                            color: Colors.green
                                             borderRadius:
                                                 const BorderRadius.only(
                                                     topLeft:
@@ -114,7 +111,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "N${item['Amount']}",
+                                            "N${item['amount']}",
                                             style: GoogleFonts.poppins(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold),
@@ -122,14 +119,14 @@ class _HistoryPageState extends State<HistoryPage> {
                                           SizedBox(
                                             width: Get.width * 0.9,
                                             child: Text(
-                                              item['Description'],
+                                              item['desc'],
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
                                               style: GoogleFonts.poppins(),
                                             ),
                                           ),
                                           Text(
-                                            item['Date'],
+                                            item['date'],
                                             style: GoogleFonts.poppins(
                                               fontStyle: FontStyle.italic,
                                               fontSize: 12,

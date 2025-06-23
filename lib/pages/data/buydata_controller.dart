@@ -136,10 +136,9 @@ class BuydataController extends GetxController with StateMixin {
     String dataPlansUrl = 'https://qofheart.com/api/data/data_plan.php';
     change(null, status: RxStatus.loading());
     try {
-      final response = await Dio().post(dataPlansUrl,
-          data: jsonEncode({"NetworkId": netwId}),
+      final response = await Dio().get(dataPlansUrl,
           options: Options(headers: {
-            'Token': box.read('profile')['ApiToken'],
+            'Authorization': "Token ${box.read('token')}",
             'Content-Type': 'application/json'
       }));
       Get.back();    
@@ -177,7 +176,7 @@ class BuydataController extends GetxController with StateMixin {
         "ported_number": ported
       }),
       headers: {
-        "Token": box.read("token"),
+        "Authorization": "Token ${box.read('token')}",
         "Content-Type": "application/json",
       },
     );

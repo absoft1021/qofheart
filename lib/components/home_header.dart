@@ -22,7 +22,7 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -224,11 +224,6 @@ class ActionButtonsRow extends StatelessWidget {
             label: 'Add Money',
             icon: Icons.monetization_on,
             onTap: () => showFundDialog(context),
-          ),
-          ActionButton(
-            label: 'Upgrade',
-            icon: Icons.send_to_mobile,
-            onTap: () => Get.to(() => const UpgradePage()),
           ),
           ActionButton(
             label: 'Pricing',

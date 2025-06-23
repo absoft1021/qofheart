@@ -14,9 +14,9 @@ class HistoryController extends GetxController with StateMixin {
   final box = GetStorage();
 
   void getHistoryX() async {
-    String loginUrl = 'https://www.qofheart.com/auth/history.php';
+    String loginUrl = 'https://qofheart.com/api/app/fetch_transactions.php';
     change(null, status: RxStatus.loading());
-    final response = await http.post(
+    final response = await http.get(
       Uri.parse(loginUrl),
       headers: {'Authorization': "Token ${box.read('token')}", 'Content-Type': 'application/json'},
     );
@@ -26,8 +26,8 @@ class HistoryController extends GetxController with StateMixin {
     if (response.statusCode == 200) {
       Map data = result;
 
-      if (data['success'] == '1') {
-        history = data['order'];
+      if (data['success'] == 'success') {
+        history = data['data'];
         if (history.isEmpty) {
           change(null, status: RxStatus.empty());
         } else {

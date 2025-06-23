@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     {"id": 1, "title": "Airtime", "icon": Icons.phone},
     {"id": 2, "title": "Data", "icon": Icons.wifi},
     {"id": 3, "title": "Cable", "icon": Icons.tv},
-    {"id": 4, "title": "Smile", "icon": Icons.emoji_emotions},
+    {"id": 4, "title": "Exam", "icon": Icons.school_outlined},
     {"id": 5, "title": "Electric", "icon": Icons.lightbulb_circle},
     {"id": 6, "title": "to Cash", "icon": Icons.wallet_giftcard},
   ];
