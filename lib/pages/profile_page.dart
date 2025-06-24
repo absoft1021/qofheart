@@ -10,89 +10,86 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profile = box.read('profile') ?? {};
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Profile',
-              style: GoogleFonts.poppins(fontSize: 18),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF8F9FB),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF0E47A1),
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            'Profile',
+            style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600),
+          ),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          children: [
+            Center(
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: const AssetImage('assets/images/user.png'),
+                    radius: 50,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    "User Status: ${profile['UserType'] ?? ''}",
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF4F21F3),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            centerTitle: true,
-          ),
-          body: Column(
-            children: [
-              const SizedBox(height: 30),
-              Image.asset('assets/images/user.png', height: 100, width: 100),
-              const SizedBox(height: 10),
-              Text(
-                "User Status: ${box.read('profile')['UserType']}",
-                style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF4F21F3)),
-              ),
-              const SizedBox(height: 15),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-              ),
-              const SizedBox(height: 15),
-              userDetails(context, 'First Name', 'fname'),
-              const SizedBox(height: 15),
-              userDetails(context, 'Last Name', 'lname'),
-              const SizedBox(height: 15),
-              userDetails(context, 'Phone', 'phone'),
-              const SizedBox(height: 15),
-              userDetails(context, 'Email', 'email'),
-              const SizedBox(height: 15),
-              userDetails(context, 'JoinDate', 'JoinDate'),
-              const SizedBox(height: 15),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-              ),
-            ],
-          ),
+            const SizedBox(height: 30),
+            _buildDetailCard('First Name', profile['fname']),
+            _buildDetailCard('Last Name', profile['lname']),
+            _buildDetailCard('Phone', profile['phone']),
+            _buildDetailCard('Email', profile['email']),
+            _buildDetailCard('Join Date', profile['JoinDate']),
+          ],
         ),
       ),
     );
   }
 
-  Widget userDetails(BuildContext context, String key, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+  Widget _buildDetailCard(String title, String? value) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          )
+        ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            children: [
-              Text(
-                '$key:',
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-              ),
-            ],
+          Text(
+            title,
+            style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 14),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: Text(
-                      box.read('profile')[value] ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          SizedBox(
+            width: 180,
+            child: Text(
+              value ?? '',
+              textAlign: TextAlign.right,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 14),
+            ),
           ),
-          const SizedBox(height: 10)
         ],
       ),
     );

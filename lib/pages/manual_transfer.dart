@@ -98,34 +98,7 @@ class _ManualTransferState extends State<ManualTransfer> {
                         Expanded(
                           child: ElevatedButton.icon(
                             onPressed: () {
-                              final profile = box.read('profile');
-                              final contact = (profile != null &&
-                                      profile['Contact'] is List &&
-                                      profile['Contact'].isNotEmpty)
-                                  ? profile['Contact'][0]['call'] ?? ''
-                                  : '';
-
-                              if (contact == '') {
-                                Get.snackbar("Error", "Contact number not found",
-                                    backgroundColor: Colors.red,
-                                    colorText: Colors.white);
-                                return;
-                              }
-
-                              Get.defaultDialog(
-                                title: "Warning",
-                                contentPadding: const EdgeInsets.all(10),
-                                content: const Text(
-                                  "Your account will be suspended if found that you click on OK while you did not send the money",
-                                  textAlign: TextAlign.center,
-                                ),
-                                onCancel: () => Navigator.pop(context),
-                                onConfirm: () {
-                                  Navigator.pop(context);
-                                  Get.find<HomeController>()
-                                      .openUrl("https://wa.me/+234$contact");
-                                },
-                              );
+                              Get.find<HomeController>().openUrl("https://wa.me/+2349016547099");
                             },
                             icon: const Icon(Icons.support_agent, size: 18),
                             label: const Text('Contact Admin'),

@@ -41,6 +41,7 @@ class _BuydataState extends State<Buydata> {
           children: [
             /// PLAN TYPE
             Container(
+              width: Get.width,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.white,

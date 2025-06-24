@@ -2,132 +2,131 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
+
 import 'package:qofheart/components/pin_code.dart';
 import 'package:qofheart/controllers/account_controller.dart';
-import 'package:qofheart/pages/profile_page.dart';
-import 'package:qofheart/pages/referral_page.dart';
-import 'package:qofheart/pages/upgrade_page.dart';
 import 'package:qofheart/pages/pricing_page.dart';
+import 'package:qofheart/pages/upgrade_page.dart';
 import 'package:qofheart/views/welcome_page.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
 
+  void shareReferralLink() {
+    const message =
+        "🎉 Join me on Qofheart and earn rewards! Download now: https://qofheart.com/app 👈";
+    Share.share(message);
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AccountController>();
-    List menus = [
+
+    final List menus = [
       {
         "id": 1,
-        "title": "Upgrade Account",
-        "sub": "To be our merchant Agent",
-        "icon": Icons.send
+        "title": "Email",
+        "sub": "dddaniel2580@gmail.com",
+        "icon": Icons.email,
+        "onTap": () {},
       },
       {
         "id": 2,
         "title": "Refer a Friend",
-        "sub": "Earn money you invite friend to qofheart",
-        "icon": Icons.share
+        "sub": "Earn money when you invite a friend to Qofheart",
+        "icon": Icons.share,
+        "onTap": shareReferralLink,
       },
       {
         "id": 3,
         "title": "Our Pricing",
-        "sub": "To view an qofheart Pricing",
-        "icon": Icons.list
+        "sub": "View Qofheart Pricing plans",
+        "icon": Icons.list,
+        "onTap": () => Get.to(() => const PricingPage()),
       },
       {
         "id": 4,
-        "title": "Change Pin",
+        "title": "Change PIN",
         "sub": "Protect yourself from intruders",
-        "icon": Icons.security
+        "icon": Icons.security,
+        "onTap": () => Get.to(() => PinCode()),
       },
-      // {
-      //   "id": 6,
-      //   "title": "Your current version is: 9",
-      //   "sub": "About us and many more about",
-      //   "icon": Icons.help_outline_outlined
-      // },
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: const Color(0xFFF3F6FA),
           body: ListView(
+            padding: const EdgeInsets.all(16),
             children: [
-              ListTile(
-                onTap: () => Get.to(() => ProfilePage()),
-                leading:
-                    CircleAvatar(child: Image.asset('assets/images/user.png')),
-                title: Text(
-                  controller.user['fname'].toString() ?? 'User',
-                  style: GoogleFonts.poppins(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+              Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                elevation: 2,
+                child: ListTile(
+                  onTap: () {},
+                  contentPadding: const EdgeInsets.all(12),
+                  leading: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: Colors.grey.shade200,
+                    child: Image.asset('assets/images/user.png'),
+                  ),
+                  title: Text(
+                    controller.user['fname']?.toString() ?? 'User',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    'Account Details',
+                    style: GoogleFonts.poppins(fontSize: 12),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                 ),
-                subtitle: Text(
-                  'Account Details',
-                  style: GoogleFonts.poppins(fontSize: 12),
-                ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
-                ),
-              ),
-              const Divider(),
-              const SizedBox(height: 10),
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: menus.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () {
-                      if (index == 0) {
-                        Get.to(() => const UpgradePage());
-                      } else if (index == 1) {
-                        Get.to(() => const ReferralPage());
-                      } else if (index == 2) {
-                        Get.to(() => const PricingPage());
-                      } else if (index == 3) {
-                        Get.to(() => PinCode());
-                      }
-                    },
-                    leading: Icon(
-                      menus[index]['icon'],
-                      color: const Color(0xFF0E47A1),
-                    ),
-                    title: Text(
-                      menus[index]['title'],
-                      style: GoogleFonts.poppins(
-                          fontSize: 14, fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      menus[index]['sub'],
-                      style: GoogleFonts.poppins(
-                          fontSize: 10, fontWeight: FontWeight.w500),
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 15,
-                    ),
-                  );
-                },
               ),
               const SizedBox(height: 20),
+              ...menus.map((menu) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  elevation: 1.5,
+                  margin: const EdgeInsets.only(bottom: 12),
+                  child: ListTile(
+                    onTap: menu['onTap'],
+                    leading: Icon(menu['icon'], color: const Color(0xFF0E47A1)),
+                    title: Text(
+                      menu['title'],
+                      style: GoogleFonts.poppins(
+                          fontSize: 14, fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      menu['sub'],
+                      style: GoogleFonts.poppins(
+                          fontSize: 11, fontWeight: FontWeight.w400),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                  ),
+                );
+              }).toList(),
+              const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const WelcomePage());
+                  Get.offAll(() => const WelcomePage());
                 },
                 child: Center(
                   child: Text(
                     'Logout',
                     style: GoogleFonts.poppins(
-                        color: Colors.red,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              )
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),

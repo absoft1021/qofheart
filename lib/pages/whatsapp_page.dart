@@ -71,7 +71,7 @@ class WhatsappPage extends StatelessWidget {
                       label: 'Contact',
                       color: Colors.green,
                       onTap: () {
-                        Get.find<HomeController>().openUrl("https://wa.me/+2348069714782");
+                        Get.find<HomeController>().openUrl("https://wa.me/+2349016547099");
                       },
                     ),
                     _supportCard(
@@ -80,7 +80,7 @@ class WhatsappPage extends StatelessWidget {
                       color: Colors.teal,
                       onTap: () {
                         Get.find<HomeController>().openUrl(
-                            'https://chat.whatsapp.com/G9XJgQrAZkwEADjB7dpUNE');
+                            'https://chat.whatsapp.com/DwQ22RX0Rsx4PJkLLbA7LQ');
                       },
                     ),
                   ],

@@ -13,6 +13,7 @@ class PricingPage extends StatefulWidget {
 
 class _PricingPageState extends State<PricingPage> {
   final controller = Get.lazyPut(() => DataController());
+
   @override
   void initState() {
     super.initState();
@@ -23,91 +24,143 @@ class _PricingPageState extends State<PricingPage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Price List',
-              style: GoogleFonts.poppins(fontSize: 18),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF0E47A1),
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            'Price List',
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
-            centerTitle: true,
           ),
-          body: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: const Color(0xFF0E47A1),
-                child: Row(children: [
-                  const SizedBox(width: 10),
-                  Text(
-                    'Services',
-                    style: GoogleFonts.poppins(color: Colors.white),
+        ),
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              color: const Color(0xFF0E47A1),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      'Service',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 80),
-                  Text(
-                    'User',
-                    style: GoogleFonts.poppins(color: Colors.white),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      'User',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 30),
-                  Text(
-                    'Agent',
-                    style: GoogleFonts.poppins(color: Colors.white),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      'Agent',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 30),
-                  Text(
-                    'Api',
-                    style: GoogleFonts.poppins(color: Colors.white),
-                  )
-                ]),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      'API',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: GetBuilder<DataController>(builder: (controller) {
+            ),
+            Expanded(
+              child: GetBuilder<DataController>(
+                builder: (controller) {
                   return ListView.separated(
-                          shrinkWrap: true,
-                          itemCount: controller.plans.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 10),
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        controller.plans[index]['PlanName']
-                                            .toString()
-                                            .replaceAll('Data', '\n'),
-                                        style: GoogleFonts.poppins(),
-                                      ),
-                                      Text(
-                                        "N${controller.plans[index]['price'].toString()}",
-                                        style: GoogleFonts.poppins(),
-                                      ),
-                                      Text(
-                                        "N${controller.plans[index]['reseller'].toString()}",
-                                        style: GoogleFonts.poppins(),
-                                      ),
-                                      Text(
-                                        "N${controller.plans[index]['api'].toString()}",
-                                        style: GoogleFonts.poppins(),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                    itemCount: controller.plans.length,
+                    separatorBuilder: (context, index) => const Divider(height: 0),
+                    itemBuilder: (context, index) {
+                      final plan = controller.plans[index];
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.05),
+                              blurRadius: 6,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                plan['PlanName']
+                                    .toString()
+                                    .replaceAll('Data', '\n'),
+                                style: GoogleFonts.poppins(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return const Divider();
-                          },
-                        );
-                }),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                "N${plan['price']}",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                "N${plan['reseller']}",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                "N${plan['api']}",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

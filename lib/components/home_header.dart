@@ -118,7 +118,7 @@ class WalletBalanceSection extends StatelessWidget {
             }
             return TextButton(
               onPressed: () {
-                Get.to(() => KycPage());
+                //Get.to(() => KycPage());
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -129,7 +129,7 @@ class WalletBalanceSection extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
               child: Text(
-                'Generate Account',
+                'No account number',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
@@ -192,7 +192,7 @@ class BalanceInfo extends StatelessWidget {
         const SizedBox(height: 4),
         Obx(
           () => Text(
-            'Bonus Balance ${AppConstants.naira}${controller.walletBonus.value}',
+            'Bonus ${AppConstants.naira}${controller.walletBonus.value}',
             style: GoogleFonts.poppins(
               color: Colors.white70,
               fontSize: 12,
@@ -213,7 +213,7 @@ class ActionButtonsRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ActionButton(
             label: 'Bonus',
