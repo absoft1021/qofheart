@@ -258,9 +258,9 @@ class _BuyAirtimeState extends State<BuyAirtime> {
                             onPressed: () {
                               String phone = controller.phoneController.text;
                               if (_amountController.text.isEmpty) {
-                                Get.snackbar("Error","Enter Amount"),
+                                Get.snackbar("Error","Enter Amount");
                               } else if (phone.length < 11) {
-                                Get.snackbar("Error", "Phone number is not valid")
+                                Get.snackbar("Error", "Phone number is not valid");
                               } else {
                                 showModalBottomSheet(
                                     context: context,
