@@ -17,7 +17,7 @@ class _BuydataState extends State<Buydata> {
   @override
   void initState() {
     super.initState();
-    c.dataPlans(context, arg, "");
+    c.dataPlans(context, args, "");
   }
 
   @override
