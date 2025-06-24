@@ -71,20 +71,18 @@ Future<void> dataPlans(int networkId, String query) async {
     }
   }
 
-  Future<void> cablePlans(String networkId) async {
+  Future<void> cablePlans(String cId) async {
     plans.removeRange(0, plans.length);
-    String loginUrl = 'https://qofheart.com/api/cable/cable_plan.php';
-    final response = await http.post(
-      Uri.parse(loginUrl),
+    String cableUrl = 'https://qofheart.com/api/app/cables.php?cableProvider=$cId';
+    final response = await http.get(
+      Uri.parse(cableUrl),
       headers: {'Authorization': "Token ${box.read('token')}", 'Content-Type': 'application/json'},
-      body: jsonEncode({"NetworkId": networkId}),
     );
 
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
-      Map data = result;
       isLoading = false;
-      plans = data['plans'];
+      plans = result;
       update();
     } else {
       throw Exception('failed to fetch');

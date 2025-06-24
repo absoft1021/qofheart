@@ -65,7 +65,7 @@ class AccountController extends GetxController {
       final res = await http.post(
         Uri.parse(url),
         body: jsonEncode({
-          "fame": fname,
+          "fname": fname,
           "lname": lname,
           "email": email,
           "phone": phone,

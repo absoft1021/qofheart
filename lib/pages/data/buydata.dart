@@ -12,23 +12,12 @@ class Buydata extends StatefulWidget {
 
 class _BuydataState extends State<Buydata> {
   final c = Get.put(BuydataController());
-  final Map<String, dynamic> args = Get.arguments;
+  var args = Get.arguments;
 
   @override
   void initState() {
     super.initState();
-    final id = args['id'];
-    c.networkId.value = id;
-
-    if (id == 1) {
-      c.dataPlans(context, 1, "mtnsme");
-    } else if (id == 2) {
-      c.dataPlans(context, 2, "glo");
-    } else if (id == 3) {
-      c.dataPlans(context, 3, "etisalat");
-    } else if (id == 4) {
-      c.dataPlans(context, 4, "airtel");
-    }
+    c.dataPlans(context, arg, "");
   }
 
   @override

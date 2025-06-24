@@ -13,9 +13,9 @@ class DataNetwork extends StatelessWidget {
     final box = GetStorage();
     List net = [
       {'id': 1, 'title': 'MTN', 'logo': 'assets/images/mtn.jpg'},
-      {'id': 2, 'title': 'Glo', 'logo': 'assets/images/glo.jpg'},
-      {'id': 3, 'title': '9Mobile', 'logo': 'assets/images/mobile.jpg'},
-      {'id': 4, 'title': 'Airtel', 'logo': 'assets/images/airtelx.jpg'},
+      {'id': 2, 'title': 'Airtel', 'logo': 'assets/images/airtelx.jpg'},
+      {'id': 3, 'title': 'Glo', 'logo': 'assets/images/glo.jpg'},
+      {'id': 4, 'title': '9Mobile', 'logo': 'assets/images/mobile.jpg'},
     ];
               
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -66,7 +66,7 @@ class DataNetwork extends StatelessWidget {
                           onTap: () {
                             box.write('logo', net[index]['logo']);
                             box.write('networkId', net[index]['id']);
-                            Get.to(() => const Buydata(), arguments: {"id": net[index]['id']});
+                            Get.to(() => const Buydata(), arguments: net[index]['id']);
                           },
                           child: Container(
                             padding: const EdgeInsets.all(10),

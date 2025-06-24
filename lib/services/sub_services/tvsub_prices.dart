@@ -50,12 +50,12 @@ class _PricingPageState extends State<TvsubPrices> {
                           return InkWell(
                             onTap: () {
                               Get.to(() => const TvsubContinue(), arguments: [
-                                {"prov": controller.plans[index]['provider']},
+                                {"prov": controller.plans[index]['cableProvider']},
                                 {
                                   "price": controller.plans[index]['price'],
                                 },
                                 {
-                                  "plan": controller.plans[index]['PlanId'],
+                                  "plan": controller.plans[index]['planId'],
                                 },
                                 {
                                   "planName": controller.plans[index]
@@ -89,7 +89,7 @@ class _PricingPageState extends State<TvsubPrices> {
                                             MediaQuery.of(context).size.width *
                                                 0.6,
                                         child: Text(
-                                          controller.plans[index]['PlanName']
+                                          controller.plans[index]['planName']
                                               .toString(),
                                           overflow: TextOverflow.ellipsis,
                                           style:
@@ -98,7 +98,7 @@ class _PricingPageState extends State<TvsubPrices> {
                                       ),
                                       const SizedBox(height: 5),
                                       Text(
-                                        "N${controller.plans[index]['price'].toString()}",
+                                        "₦${controller.plans[index]['price'].toString()}",
                                         style: GoogleFonts.poppins(),
                                       ),
                                     ],

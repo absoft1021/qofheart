@@ -50,7 +50,7 @@ class BuydataController extends GetxController with StateMixin {
   var network = ['mtn', 'glo', 'etisalat', 'airtel'];
   void filterPlans(String plan) {
     flist = plans.where((category) {
-      return category['DataType'].toLowerCase().contains(plan);
+      return category['DataType'].toLowerCase() == plan.toLowerCase();
     }).toList();
     update();
   }

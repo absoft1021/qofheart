@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       username = profile?["fname"]?.toString() ?? "User";
     });
     if (mounted) {
-      NotificationDialog().showNotification(context, 1);
+     // NotificationDialog().showNotification(context, 1);
     }
   }
 
@@ -111,8 +111,8 @@ class _HomePageState extends State<HomePage> {
       ),
       actions: [
         IconButton(
-          onPressed: () => Get.to(() => const WhatsappPage()),
-          icon: const Icon(Icons.support_agent, color: Colors.white, size: 24),
+          onPressed: () => NotificationDialog().showNotification(context, 1),
+          icon: const Icon(Icons.notifications, color: Colors.white, size: 24),
         ),
         IconButton(
           onPressed: () => controller.userDetails(true),

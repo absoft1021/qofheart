@@ -12,11 +12,12 @@ class BuyTvsub extends StatelessWidget {
   Widget build(BuildContext context) {
     final box = GetStorage();
     List net = [
-      {'id': 1, 'title': 'DSTV', 'logo': 'assets/images/dstv.png'},
-      {'id': 2, 'title': 'GOTV', 'logo': 'assets/images/gotv.png'},
+      {'id': 1, 'title': 'GOTV', 'logo': 'assets/images/gotv.png'},
+      {'id': 2, 'title': 'DSTV', 'logo': 'assets/images/dstv.png'},
       {'id': 3, 'title': 'Startimes', 'logo': 'assets/images/startimes.png'},
       {'id': 4, 'title': 'ShowMax', 'logo': 'assets/images/showmax.png'}
     ];
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
@@ -24,35 +25,46 @@ class BuyTvsub extends StatelessWidget {
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
+            elevation: 0,
+            title: Text(
+              'TV Subscription',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.help_outline_sharp),
-              )
+                icon: const Icon(Icons.help_outline, color: Colors.black54),
+              ),
             ],
           ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //menu items here
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(
-                    'assets/images/app_icon.png',
-                    height: 80,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                Image.asset(
+                  'assets/images/app_icon.png',
+                  height: 70,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Select a TV Provider',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    'Select a Network Provider',
-                    style: GoogleFonts.poppins(),
-                  ),
-                  const SizedBox(height: 20),
-                  ListView.builder(
-                    shrinkWrap: true,
+                ),
+                const SizedBox(height: 20),
+                Expanded(
+                  child: ListView.separated(
                     itemCount: net.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 12),
                     itemBuilder: (context, index) {
-                      return InkWell(
+                      return GestureDetector(
                         onTap: () {
                           box.write('tvId', net[index]['title']);
                           Get.to(() => const TvsubPrices(), arguments: [
@@ -61,38 +73,46 @@ class BuyTvsub extends StatelessWidget {
                           ]);
                         },
                         child: Container(
-                          padding: const EdgeInsets.all(10),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 12),
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(15))),
+                            color: const Color(0xFFF8F9FA),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.03),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Image.asset(
                                 net[index]['logo'],
-                                height: 50,
-                                width: 50,
+                                height: 40,
+                                width: 40,
                               ),
-                              Text(
-                                net[index]['title'],
-                                style: GoogleFonts.poppins(),
+                              const SizedBox(width: 14),
+                              Expanded(
+                                child: Text(
+                                  net[index]['title'],
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
-                              const Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16,
-                              )
+                              const Icon(Icons.arrow_forward_ios, size: 16),
                             ],
                           ),
                         ),
                       );
                     },
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

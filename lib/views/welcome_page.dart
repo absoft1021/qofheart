@@ -52,21 +52,33 @@ class WelcomePage extends StatelessWidget {
                 height: 55,
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0E47A1),
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: () => Get.to(() => const RegisterPage()),
-                    child: const Text('Register')),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0E47A1),
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () => Get.to(() => const RegisterPage()),
+                  child: const Text('Register'),
+                ),
               ),
               const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 height: 55,
                 child: OutlinedButton(
-                    onPressed: () => Get.to(() => LoginPage()),
-                    child: const Text('Already have an account')),
-              )
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Color(0xFF0E47A1), // Text color
+                    side: const BorderSide(
+                      color: Color(0xFF0E47A1), // Border color
+                      width: 1.5,
+                    ),
+                    textStyle: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onPressed: () => Get.to(() => LoginPage()),
+                  child: const Text('Already have an account'),
+                ),
+              ),
             ],
           ),
         ),

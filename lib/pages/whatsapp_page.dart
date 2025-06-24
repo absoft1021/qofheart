@@ -11,94 +11,124 @@ class WhatsappPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final box = GetStorage();
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: const Color(0xfff4f6fa),
           appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
             title: Text(
               'Support Page',
-              style: GoogleFonts.poppins(fontSize: 18),
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
             ),
             actions: [
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.help_outline_rounded))
+                onPressed: () {},
+                icon: const Icon(Icons.help_outline_rounded, color: Colors.black54),
+              )
             ],
           ),
-          body: Center(
+          body: Padding(
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                const SizedBox(height: 20),
-                Image.asset(
-                  'assets/images/illu_customer_care.png',
-                  height: 150,
-                  width: 150,
+                const SizedBox(height: 10),
+                Icon(
+                  Icons.support_agent_rounded,
+                  size: 100,
+                  color: Colors.blue.shade700,
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
                 Text(
                   'How can we help you?',
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    'Our Customer interaction center offers you 24/7 real-time information and assistance on all your enquiries and queries',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 8),
+                Text(
+                  'Our customer care center is available 24/7 to assist with your questions and concerns.',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 30),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    GestureDetector(
+                    _supportCard(
+                      icon: Icons.phone_in_talk_rounded,
+                      label: 'Contact',
+                      color: Colors.green,
+                      onTap: () {
+                        Get.find<HomeController>().openUrl("https://wa.me/+2348069714782");
+                      },
+                    ),
+                    _supportCard(
+                      icon: Icons.group_rounded,
+                      label: 'WhatsApp Group',
+                      color: Colors.teal,
                       onTap: () {
                         Get.find<HomeController>().openUrl(
-                            "https://wa.me/+2348069714782");
+                            'https://chat.whatsapp.com/G9XJgQrAZkwEADjB7dpUNE');
                       },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/group.jpg',
-                            height: 50,
-                            width: 50,
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            'Contact',
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500, fontSize: 12),
-                          )
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => Get.find<HomeController>()
-                          .openUrl('https://chat.whatsapp.com/G9XJgQrAZkwEADjB7dpUNE'),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            'assets/images/group.jpg',
-                            height: 50,
-                            width: 50,
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            'Whatsapp Group',
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500, fontSize: 12),
-                          )
-                        ],
-                      ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _supportCard({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 130,
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            )
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 40, color: color),
+            const SizedBox(height: 10),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
+                fontSize: 13,
+              ),
+            ),
+          ],
         ),
       ),
     );

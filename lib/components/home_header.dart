@@ -22,7 +22,7 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -91,7 +91,7 @@ class WalletBalanceSection extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
                       Text(
@@ -99,7 +99,7 @@ class WalletBalanceSection extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
                     ],
@@ -118,7 +118,7 @@ class WalletBalanceSection extends StatelessWidget {
             }
             return TextButton(
               onPressed: () {
-                //Get.to(() => KycPage());
+                Get.to(() => KycPage());
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -257,7 +257,7 @@ class ActionButton extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Colors.grey[100],
+        //  color: Colors.grey[100],
         ),
         child: Column(
           children: [
