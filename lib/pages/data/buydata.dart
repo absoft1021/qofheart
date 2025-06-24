@@ -25,169 +25,175 @@ class _BuydataState extends State<Buydata> {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F5FA),
       appBar: AppBar(
-        title: Text('Buy Data', style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white,
-        elevation: 0,
+        title: Text(
+          'Buy Data',
+          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+        ),
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        foregroundColor: Colors.black87,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-        children: [
-          const SizedBox(height: 15),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// PLAN TYPE
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Plan Type', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 10),
+                  GetBuilder<BuydataController>(
+                    builder: (c) {
+                      if (c.mtnLabels.isEmpty) {
+                        return Text("No options available", style: TextStyle(color: Colors.grey));
+                      }
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(c.mtnLabels.length, (index) {
+                            final item = c.mtnLabels[index];
+                            final isSelected = c.selectedIndex == index;
 
-          // Plan Type Toggle Buttons (Dynamically from API)
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade300),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Plan Type',
-                  style: GoogleFonts.poppins(
-                    color: Colors.black87,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                GetBuilder<BuydataController>(
-                  builder: (c) {
-                    if (c.mtnLabels.isEmpty) {
-                      return Text("No options available", style: TextStyle(color: Colors.grey));
-                    }
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: ToggleButtons(
-                        isSelected: List.generate(
-                          c.mtnLabels.length,
-                          (index) => c.selectedIndex == index,
-                        ),
-                        children: c.mtnLabels
-                            .map(
-                              (item) => Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                            return GestureDetector(
+                              onTap: () {
+                                String value = item['Type'].toString();
+                                c.filterPlans(value.toLowerCase());
+                                c.selectedIndex = index;
+                                c.update();
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(right: 8),
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: isSelected ? const Color(0xFF0E47A1) : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: isSelected ? const Color(0xFF0E47A1) : Colors.grey.shade400,
+                                  ),
+                                ),
                                 child: Text(
                                   item['Name']?.toString() ?? '',
-                                  style: GoogleFonts.poppins(fontSize: 14),
+                                  style: GoogleFonts.poppins(
+                                    color: isSelected ? Colors.white : Colors.black87,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
-                            )
-                            .toList(),
-                        onPressed: (index) {
-                          String value = c.mtnLabels[index]['Type'].toString();
-                          c.filterPlans(value.toLowerCase());
-                          c.selectedIndex = index; // Update the selected index
-                          c.update();
-                        },
-                        borderRadius: BorderRadius.circular(8),
-                        selectedColor: Colors.white,
-                        fillColor: const Color(0xFF0E47A1),
-                        color: const Color(0xFF0E47A1).withOpacity(0.8),
-                      ),
-                    );
-                  },
+                            );
+                          }),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// DATA PLAN
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Data Plan', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 10),
+                  GetBuilder<BuydataController>(
+                    builder: (_) {
+                      return DropdownMenu(
+                        width: Get.width - 56,
+                        hintText: 'Select Data Plan',
+                        dropdownMenuEntries: c.flist.map((item) {
+                          return DropdownMenuEntry(
+                            value: item['PlanId'],
+                            label: item['PlanName'],
+                            trailingIcon: Text(
+                              "NGN${item['price']}",
+                              style: GoogleFonts.poppins(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onSelected: (value) => c.planId = value.toString(),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// PHONE NUMBER
+            Text('Phone Number', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 6),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child: TextFormField(
+                controller: c.phoneController,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  hintText: 'Enter number',
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                    onPressed: () => c.pickNumber(),
+                    icon: const Icon(Icons.contact_phone, color: Color(0xFF0E47A1)),
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
 
-          const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
-          // Data Plan Selection Section (Filtered Plans)
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade300),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Data Plan',
+            /// PURCHASE BUTTON
+            GestureDetector(
+              onTap: () {
+                c.handlePurchase(context);
+              },
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0E47A1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Purchase',
                   style: GoogleFonts.poppins(
-                    color: Colors.black87,
                     fontSize: 16,
+                    color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 10),
-
-                GetBuilder<BuydataController>(builder: (_) {
-                  return DropdownMenu(
-                    width: Get.width - 40,
-                    hintText: 'Select Data Plan',
-                    dropdownMenuEntries: c.flist.map((item) {
-                      return DropdownMenuEntry(
-                        value: item['PlanId'],
-                        label: item['PlanName'],
-                        trailingIcon: Text(
-                          "NGN${item['price']}",
-                          style: GoogleFonts.poppins(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    onSelected: (value) => c.planId = value.toString(),
-                  );
-                }),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // Phone Number Input
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: TextFormField(
-              controller: c.phoneController,
-              keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                hintText: 'Phone Number',
-                hintStyle: TextStyle(color: Colors.grey),
-                suffixIcon: IconButton(
-                  onPressed: () => c.pickNumber(),
-                  icon: const Icon(Icons.contact_phone),
-                  color: const Color(0xFF0E47A1),
-                ),
-                border: const UnderlineInputBorder(),
               ),
             ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // Purchase Button
-          InkWell(
-            onTap: () {
-              c.handlePurchase(context);
-            },
-            child: Container(
-              height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color(0xFF0E47A1),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                'Purchase',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

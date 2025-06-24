@@ -46,7 +46,7 @@ class AirtimeCash extends GetWidget<AirtimeCashController> {
             ElevatedButton(
               onPressed: () {
                 Get.find<HomeController>().openUrl(
-                  "https://wa.me/+2348069714782?text=I%20have%20airtime%20to%20sell"
+                  "https://wa.me/+2348069714782"
                 );
               },
               style: ElevatedButton.styleFrom(

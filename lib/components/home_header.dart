@@ -159,7 +159,7 @@ class BalanceInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Wallet Balance',
+          'Account Balance',
           style: GoogleFonts.poppins(
             color: Colors.white70,
             fontWeight: FontWeight.w400,
@@ -192,7 +192,7 @@ class BalanceInfo extends StatelessWidget {
         const SizedBox(height: 4),
         Obx(
           () => Text(
-            '& bonus ${AppConstants.naira}${controller.walletBonus.value}',
+            'Bonus Balance ${AppConstants.naira}${controller.walletBonus.value}',
             style: GoogleFonts.poppins(
               color: Colors.white70,
               fontSize: 12,
@@ -221,12 +221,12 @@ class ActionButtonsRow extends StatelessWidget {
             onTap: () => Get.to(() => TransferPage()),
           ),
           ActionButton(
-            label: 'Add Money',
+            label: 'Fund Wallet',
             icon: Icons.monetization_on,
             onTap: () => showFundDialog(context),
           ),
           ActionButton(
-            label: 'Pricing',
+            label: 'Data Price',
             icon: Icons.storage_rounded,
             onTap: () => Get.to(() => const PricingPage()),
           ),
