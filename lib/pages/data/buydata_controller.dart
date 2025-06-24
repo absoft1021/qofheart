@@ -31,8 +31,7 @@ class BuydataController extends GetxController with StateMixin {
   ];
   var position = (-1).obs;
 
-  var plans = [];
-  var flist = [];
+  
   List net = [
     'assets/images/mtn.jpg',
     'assets/images/airtelx.jpg',
@@ -48,12 +47,6 @@ class BuydataController extends GetxController with StateMixin {
   bool isLoading = true;
 
   var network = ['mtn', 'glo', 'etisalat', 'airtel'];
-  void filterPlans(String plan) {
-    flist = plans.where((category) {
-      return category['DataType'].toLowerCase() == plan.toLowerCase();
-    }).toList();
-    update();
-  }
     // Function to handle purchase
   void handlePurchase(BuildContext context) {
     String phone = phoneController.text;
@@ -127,14 +120,25 @@ class BuydataController extends GetxController with StateMixin {
     phoneController.text = phoneNumber;
     update();
   }
+  
+  var plans = [];
+  var flist = [];
+  
+  void filterPlans(String plan) {
+    flist = plans.where((category) {
+      final dataType = category['DataType']?.toString()?.toLowerCase() ?? '';
+      return dataType == plan.toLowerCase();
+    }).toList();
+    update();
+  }
 
-  Future<void> dataPlans(BuildContext ctx, int netwId, String query) async {
+  Future<void> dataPlans(BuildContext ctx, int netId, String query) async {
   LoadingDialog(context: ctx).showLoading();
 
   if (flist.isNotEmpty) flist.clear();
   if (plans.isNotEmpty) plans.clear();
 
-  String dataPlansUrl = 'https://qofheart.com/api/app/data_plans.php';
+  String dataPlansUrl = 'https://qofheart.com/api/app/data_plans.php?dataNetwork=$netId';
   change(null, status: RxStatus.loading());
 
   try {

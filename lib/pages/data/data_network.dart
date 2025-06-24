@@ -17,143 +17,140 @@ class DataNetwork extends StatelessWidget {
       {'id': 3, 'title': 'Glo', 'logo': 'assets/images/glo.jpg'},
       {'id': 4, 'title': '9Mobile', 'logo': 'assets/images/mobile.jpg'},
     ];
-              
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: const Color(0xFFF9F9F9),
           appBar: AppBar(
-            backgroundColor: const Color(0x00eeeeee),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            automaticallyImplyLeading: false,
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.help_outline_sharp),
-              )
+                icon: const Icon(Icons.help_outline, color: Colors.black54),
+              ),
             ],
           ),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //menu items here
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(
-                    'assets/images/app_icon.png',
-                    height: 80,
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    'Select Network',
-                    style: GoogleFonts.poppins(
-                      color: Colors.black87,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: net.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            box.write('logo', net[index]['logo']);
-                            box.write('networkId', net[index]['id']);
-                            Get.to(() => const Buydata(), arguments: net[index]['id']);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(15))),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage(net[index]['logo']),
-                                  radius: 35,
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  net[index]['title'],
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+              const SizedBox(height: 10),
+              Image.asset('assets/images/app_icon.png', height: 70),
+              const SizedBox(height: 10),
+              Text(
+                'Select Network',
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-              InkWell(
-                onTap: () => {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return BottomSheet(
-                          onClosing: () {},
-                          builder: ((context) {
-                            return SingleChildScrollView(
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                height: MediaQuery.of(context).size.height,
-                                child: Column(
-                                  children: [
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      'Checking Data Balance Codes',
-                                      style: GoogleFonts.poppins(),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    buttonCode('MTN SME *461*4#'),
-                                    const SizedBox(height: 10),
-                                    buttonCode('MTN CG *460*260#'),
-                                    const SizedBox(height: 10),
-                                    buttonCode('AIRTEL *323#'),
-                                    const SizedBox(height: 10),
-                                    buttonCode('GLO *323#'),
-                                    const SizedBox(height: 10),
-                                    buttonCode('9MOBILE *228#'),
-                                  ],
+              const SizedBox(height: 20),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: GridView.builder(
+                    itemCount: net.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 3 / 3.2,
+                    ),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          box.write('logo', net[index]['logo']);
+                          box.write('networkId', net[index]['id']);
+                          Get.to(() => const Buydata(), arguments: net[index]['id']);
+                        },
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: const Color(0xFFE0E0E0)),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage(net[index]['logo']),
+                                radius: 32,
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                net[index]['title'],
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
                                 ),
                               ),
-                            );
-                          }),
-                        );
-                      })
-                },
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => showModalBottomSheet(
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                  ),
+                  isScrollControlled: true,
+                  builder: (context) => Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Data Balance USSD Codes',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        ...[
+                          'MTN SME *461*4#',
+                          'MTN CG *460*260#',
+                          'AIRTEL *323#',
+                          'GLO *323#',
+                          '9MOBILE *228#',
+                        ].map((text) => Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 6),
+                              child: buttonCode(text),
+                            )),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
                 child: Container(
                   width: double.infinity,
                   height: 50,
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0E47A1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(8),
-                  color: const Color(0xFF0E47A1),
                   child: Text(
-                    'CLICK TO VIEW CODES FOR CHECKING BALANCE',
+                    'VIEW BALANCE CHECK CODES',
                     style: GoogleFonts.poppins(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -169,9 +166,16 @@ class DataNetwork extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF0E47A1),
           foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 14),
         ),
-        child: Text(text),
+        child: Text(
+          text,
+          style: GoogleFonts.poppins(fontSize: 14),
+        ),
       ),
     );
   }
-}  
+}

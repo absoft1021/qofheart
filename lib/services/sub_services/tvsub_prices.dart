@@ -16,11 +16,12 @@ class TvsubPrices extends StatefulWidget {
 class _PricingPageState extends State<TvsubPrices> {
   final box = GetStorage();
   final controller = Get.lazyPut(() => DataController());
-  String netId = Get.arguments[1]['title'].toString();
+  //String netId = Get.arguments[1]['title'].toString();
   @override
   void initState() {
     super.initState();
-    Get.find<DataController>().cablePlans(box.read('tvId'));
+    String id = Get.arguments[2]['id'];
+    Get.find<DataController>().cablePlans(id);
   }
 
   @override

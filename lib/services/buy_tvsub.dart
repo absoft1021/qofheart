@@ -12,10 +12,10 @@ class BuyTvsub extends StatelessWidget {
   Widget build(BuildContext context) {
     final box = GetStorage();
     List net = [
-      {'id': 1, 'title': 'GOTV', 'logo': 'assets/images/gotv.png'},
-      {'id': 2, 'title': 'DSTV', 'logo': 'assets/images/dstv.png'},
-      {'id': 3, 'title': 'Startimes', 'logo': 'assets/images/startimes.png'},
-      {'id': 4, 'title': 'ShowMax', 'logo': 'assets/images/showmax.png'}
+      {'id': '1', 'title': 'GOTV', 'logo': 'assets/images/gotv.png'},
+      {'id': '2', 'title': 'DSTV', 'logo': 'assets/images/dstv.png'},
+      {'id': '3', 'title': 'Startimes', 'logo': 'assets/images/startimes.png'},
+      {'id': '4', 'title': 'ShowMax', 'logo': 'assets/images/showmax.png'}
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -69,7 +69,8 @@ class BuyTvsub extends StatelessWidget {
                           box.write('tvId', net[index]['title']);
                           Get.to(() => const TvsubPrices(), arguments: [
                             {"logo": net[index]['logo']},
-                            {"title": net[index]['title']}
+                            {"title": net[index]['title']},
+                            {"id": net[index]['id']}
                           ]);
                         },
                         child: Container(

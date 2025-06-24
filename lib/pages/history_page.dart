@@ -29,136 +29,139 @@ class _HistoryPageState extends State<HistoryPage> {
       value: const SystemUiOverlayStyle(statusBarColor: Color(0xFF0E47A1)),
       child: SafeArea(
         child: Scaffold(
-          // appBar: AppBar(
-          //   automaticallyImplyLeading: false,
-          //   title: Text(
-          //     'Transaction History',
-          //     style: GoogleFonts.poppins(fontSize: 15),
-          //   ),
-          //   centerTitle: true,
-          // ),
+          backgroundColor: const Color(0xFFF9F9F9),
           body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Search Bar
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.all(16),
                 child: TextFormField(
+                  controller: searchController,
                   onChanged: (value) {
                     controller.filteredList.value = controller.history
-                        .where((item) => item['desc'].contains(value))
+                        .where((item) => item['desc']
+                            .toString()
+                            .toLowerCase()
+                            .contains(value.toLowerCase()))
                         .toList();
                   },
                   decoration: InputDecoration(
-                    hintText: 'Transaction History',
-                    contentPadding: const EdgeInsets.all(8),
-                    border: InputBorder.none,
+                    hintText: 'Search transaction...',
                     prefixIcon: const Icon(Icons.search),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          searchController.clear();
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.close)),
+                    suffixIcon: searchController.text.isNotEmpty
+                        ? IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () {
+                              searchController.clear();
+                              controller.filteredList.value = controller.history;
+                            },
+                          )
+                        : null,
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
-                  style: GoogleFonts.aBeeZee(fontSize: 15),
+                  style: GoogleFonts.poppins(fontSize: 14),
                 ),
               ),
-              const Divider(),
-              const SizedBox(height: 10),
-              controller.obx(
-                  (data) => Expanded(
-                        child: Obx(
-                          () => ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: controller.filteredList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              var item = controller.filteredList[index];
-                              return Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(0.5, 0.5),
-                                        blurRadius: .5,
-                                        spreadRadius: 1,
-                                      )
-                                    ],
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: InkWell(
-                                  onTap: () => Get.to(() => const ReceiptPage(),
-                                      arguments:
-                                          controller.filteredList[index]),
-                                  child: Row(
+
+              // Transactions
+              Expanded(
+                child: controller.obx(
+                  (data) => Obx(
+                    () => ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      itemCount: controller.filteredList.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      itemBuilder: (context, index) {
+                        var item = controller.filteredList[index];
+                        return InkWell(
+                          onTap: () => Get.to(
+                            () => const ReceiptPage(),
+                            arguments: item,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: const Color(0xFFE0E0E0),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 4,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        width: 5,
-                                        height: 70,
-                                        decoration: BoxDecoration(
-                                            color: Colors.green,
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(10),
-                                                    bottomLeft:
-                                                        Radius.circular(10))),
+                                      Text(
+                                        "₦${item['amount']}",
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
                                       ),
-                                      const SizedBox(width: 10),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "N${item['amount']}",
-                                            style: GoogleFonts.poppins(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            width: Get.width * 0.9,
-                                            child: Text(
-                                              item['desc'],
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: GoogleFonts.poppins(),
-                                            ),
-                                          ),
-                                          Text(
-                                            item['date'],
-                                            style: GoogleFonts.poppins(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 12,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ],
-                                      )
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        item['desc'],
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 13,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        item['date'],
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                              );
-                            },
+                              ],
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
+                    ),
+                  ),
                   onLoading: const Center(
                     child: CircularProgressIndicator(),
                   ),
                   onEmpty: Center(
                     child: Text(
                       'No transaction record found',
-                      style: GoogleFonts.poppins(fontSize: 20),
+                      style: GoogleFonts.poppins(fontSize: 16),
                     ),
-                  ), onError: (error) {
-                return Center(
-                  child: Text(
-                    'No transaction record found',
-                    style: GoogleFonts.poppins(fontSize: 20),
                   ),
-                );
-              }),
+                  onError: (error) => Center(
+                    child: Text(
+                      'Something went wrong.',
+                      style: GoogleFonts.poppins(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

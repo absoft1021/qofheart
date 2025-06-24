@@ -81,7 +81,7 @@ class _BuydataState extends State<Buydata> {
                           String value = c.mtnLabels[index]['Type'].toString();
                           c.filterPlans(value.toLowerCase());
                           c.selectedIndex = index; // Update the selected index
-                          c.update(); // Call update to refresh the GetBuilder
+                          c.update();
                         },
                         borderRadius: BorderRadius.circular(8),
                         selectedColor: Colors.white,

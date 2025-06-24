@@ -258,15 +258,9 @@ class _BuyAirtimeState extends State<BuyAirtime> {
                             onPressed: () {
                               String phone = controller.phoneController.text;
                               if (_amountController.text.isEmpty) {
-                                AwesomeDialog(
-                                        context: context,
-                                        dialogType: DialogType.error,
-                                        animType: AnimType.rightSlide,
-                                        title: "Warning",
-                                        desc: "enter amount")
-                                    .show();
+                                Get.snackbar("Error","Enter Amount"),
                               } else if (phone.length < 11) {
-                                errorDialog(context, "Phone Number not valid");
+                                Get.snackbar("Error", "Phone number is not valid")
                               } else {
                                 showModalBottomSheet(
                                     context: context,
