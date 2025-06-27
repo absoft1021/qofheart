@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:qofheart/components/pin_code.dart';
 import 'package:qofheart/views/login_page.dart';
+import 'package:qofheart/views/main_page.dart';
 
 class AccountController extends GetxController {
   final box = GetStorage();
@@ -48,7 +49,13 @@ class AccountController extends GetxController {
         acct.value = user['bank_details'];
 
         update();
-        Get.to(() => PinCode());
+        
+        if (savedPin == null || savedPin.toString().isEmpty) {
+          Get.to(() => PinCode()); // Ask to set PIN
+        } else {
+          Get.to(() => MainPage()); // Go to main app
+        }
+        
       } else {
         Get.snackbar('Error', 'Server error', margin: const EdgeInsets.all(10));
       }

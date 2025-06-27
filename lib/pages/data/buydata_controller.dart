@@ -19,6 +19,7 @@ class BuydataController extends GetxController with StateMixin {
   final box = GetStorage();
   var phoneNumber = "";
   String planId = "";
+  String planName = "";
   var selectedIndex = 0;
   RxInt networkId = 1.obs;
   RxBool isMTN = false.obs;
@@ -87,13 +88,13 @@ class BuydataController extends GetxController with StateMixin {
                   final isAuthenticated = await LocalAuthApi.authenticate();
                   if (isAuthenticated) {
                     Get.back();
-                    buyData(context, phone, netId, planId, false);
+                    buyData(context, phone, netId, planId, planName, false);
                   }
                 },
                 onCompleted: (passcode) async {
                   if (passcode == box.read('pin')) {
                     Get.back();
-                    buyData(context, phone, netId, planId, false);
+                    buyData(context, phone, netId, planId, planName, false);
                   }
                 },
               ),
@@ -182,28 +183,37 @@ class BuydataController extends GetxController with StateMixin {
   }
 
   Future<void> buyData(BuildContext context, String phone, String netId,
-      String plan, bool ported) async {
-    LoadingDialog(context: context).showLoading();
-    String dataUrl = 'https://www.qofheart.com/api/data/';
-    final response = await http.post(
-      Uri.parse(dataUrl),
-      body: json.encode({
-        "phone": phone,
-        "network": netId,
-        "plan": plan,
-        "ported_number": ported
-      }),
-      headers: {
-        "Authorization": "Token ${box.read('token')}",
-        "Content-Type": "application/json",
-      },
-    );
-    Get.back();
-    Map data = jsonDecode(response.body);
-    if (data["status"] == "success") {
-      Abdialog().showDialog(data['msg'], true);
-    } else {
-      Abdialog().showDialog(data['msg'], false);
+    String plan, String planN, bool ported) async {
+    try {
+      LoadingDialog(context: context).showLoading();
+  
+      final response = await http.post(
+        Uri.parse('https://www.qofheart.com/api/data/'),
+        body: json.encode({
+          "phone": phone,
+          "network": netId,
+          "plan": plan,
+          "ported_number": ported
+        }),
+        headers: {
+          "Authorization": "Token ${box.read('token') ?? ''}",
+          "Content-Type": "application/json",
+        },
+      );
+  
+      Get.back(); // Close loading
+  
+      final data = jsonDecode(response.body);
+  
+      if (data["status"] == "success") {
+        Abdialog().showDialog("You have purchased $planN to $phone successfully", true);
+      } else {
+        Abdialog().showDialog(data['msg'] ?? "Transaction failed", false);
+      }
+  
+    } catch (e) {
+      Get.back(); // Ensure dialog closes
+      Abdialog().showDialog("Network error: $e", false);
     }
   }
 }

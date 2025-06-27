@@ -116,13 +116,13 @@ class _BuydataState extends State<Buydata> {
                   Text('Data Plan', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 10),
                   GetBuilder<BuydataController>(
-                    builder: (_) {
-                      return DropdownMenu(
+                    builder: (c) {
+                      return DropdownMenu<Map>(
                         width: Get.width - 56,
                         hintText: 'Select Data Plan',
-                        dropdownMenuEntries: c.flist.map((item) {
-                          return DropdownMenuEntry(
-                            value: item['PlanId'],
+                        dropdownMenuEntries: c.flist.map<DropdownMenuEntry<Map>>((item) {
+                          return DropdownMenuEntry<Map>(
+                            value: item, // Store the whole plan item
                             label: item['PlanName'],
                             trailingIcon: Text(
                               "NGN${item['price']}",
@@ -133,7 +133,11 @@ class _BuydataState extends State<Buydata> {
                             ),
                           );
                         }).toList(),
-                        onSelected: (value) => c.planId = value.toString(),
+                        onSelected: (value) {
+                          // Save PlanId and PlanName
+                          c.planId = value?['PlanId'].toString();
+                          c.planName = value?['PlanName'].toString();
+                        },
                       );
                     },
                   ),

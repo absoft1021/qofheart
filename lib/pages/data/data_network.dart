@@ -96,61 +96,6 @@ class DataNetwork extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () => showModalBottomSheet(
-                  context: context,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                  ),
-                  isScrollControlled: true,
-                  builder: (context) => Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Data Balance USSD Codes',
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ...[
-                          'MTN SME *461*4#',
-                          'MTN CG *460*260#',
-                          'AIRTEL *323#',
-                          'GLO *323#',
-                          '9MOBILE *228#',
-                        ].map((text) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 6),
-                              child: buttonCode(text),
-                            )),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  ),
-                ),
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF0E47A1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'VIEW BALANCE CHECK CODES',
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

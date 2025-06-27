@@ -110,7 +110,7 @@ class ReceiptPage extends StatelessWidget {
                 _pdfRow("Amount", "NGN ${data['amount'] ?? ''}"),
                 _pdfRow("Description", data['desc'] ?? ''),
                 _pdfRow("Old Balance", "NGN ${data['oldbal'] ?? ''}"),
-                _pdfRow("New Balance", "NGN ${data['newBal'] ?? ''}"),
+                _pdfRow("New Balance", "NGN ${data['newbal'] ?? ''}"),
                 _pdfRow("Date", data['date'] ?? ''),
               ],
             ),

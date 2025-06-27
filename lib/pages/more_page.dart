@@ -8,6 +8,7 @@ import 'package:qofheart/components/pin_code.dart';
 import 'package:qofheart/controllers/account_controller.dart';
 import 'package:qofheart/pages/pricing_page.dart';
 import 'package:qofheart/pages/upgrade_page.dart';
+import 'package:qofheart/pages/profile_page.dart';
 import 'package:qofheart/views/welcome_page.dart';
 
 class MorePage extends StatelessWidget {
@@ -15,7 +16,7 @@ class MorePage extends StatelessWidget {
 
   void shareReferralLink() {
     const message =
-        "🎉 Join me on Qofheart and earn rewards! Download now: https://qofheart.com/app 👈";
+        "🎉 Join me on Qofheart and earn rewards! Download now:\n https://qofheart.com/mobile/register/ 👈";
     Share.share(message);
   }
 
@@ -67,7 +68,7 @@ class MorePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12)),
                 elevation: 2,
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () => Get.to(() => ProfilePage()),
                   contentPadding: const EdgeInsets.all(12),
                   leading: CircleAvatar(
                     radius: 24,
