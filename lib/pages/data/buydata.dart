@@ -135,8 +135,8 @@ class _BuydataState extends State<Buydata> {
                         }).toList(),
                         onSelected: (value) {
                           // Save PlanId and PlanName
-                          c.planId = value?['PlanId'].toString();
-                          c.planName = value?['PlanName'].toString();
+                          c.planId = value?['PlanId'].toString() ?? '';
+                          c.planName = value?['PlanName'].toString() ?? '';
                         },
                       );
                     },

@@ -50,6 +50,8 @@ class AccountController extends GetxController {
 
         update();
         
+        String? savedPin = box.read('pin');
+        
         if (savedPin == null || savedPin.toString().isEmpty) {
           Get.to(() => PinCode()); // Ask to set PIN
         } else {
