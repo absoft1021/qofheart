@@ -117,27 +117,53 @@ class _BuydataState extends State<Buydata> {
                   const SizedBox(height: 10),
                   GetBuilder<BuydataController>(
                     builder: (c) {
-                      return DropdownMenu<Map>(
-                        width: Get.width - 56,
-                        hintText: 'Select Data Plan',
-                        dropdownMenuEntries: c.flist.map<DropdownMenuEntry<Map>>((item) {
-                          return DropdownMenuEntry<Map>(
-                            value: item, // Store the whole plan item
-                            label: item['PlanName'],
-                            trailingIcon: Text(
-                              "NGN${item['price']}",
-                              style: GoogleFonts.poppins(
-                                color: Colors.black54,
-                                fontWeight: FontWeight.w500,
-                              ),
+                      return Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.grey.shade300),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.15),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
                             ),
-                          );
-                        }).toList(),
-                        onSelected: (value) {
-                          // Save PlanId and PlanName
-                          c.planId = value?['PlanId'].toString() ?? '';
-                          c.planName = value?['PlanName'].toString() ?? '';
-                        },
+                          ],
+                        ),
+                        child: DropdownMenu<Map>(
+                          width: Get.width - 56,
+                          hintText: 'Select Data Plan',
+                          textStyle: GoogleFonts.poppins(
+                            fontSize: 14,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          menuStyle: MenuStyle(
+                            maximumSize: MaterialStateProperty.all<Size>(
+                              const Size.fromHeight(250), // ⬅️ Max height so it scrolls
+                            ),
+                          ),
+                          dropdownMenuEntries: c.flist.map<DropdownMenuEntry<Map>>((item) {
+                            return DropdownMenuEntry<Map>(
+                              value: item,
+                              label: item['PlanName'],
+                              trailingIcon: Text(
+                                "₦${item['price']}",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 13,
+                                  color: Colors.green.shade700,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          onSelected: (value) {
+                            c.planId = value?['PlanId'].toString() ?? '';
+                            c.planName = value?['PlanName'].toString() ?? '';
+                          },
+                        ),
                       );
                     },
                   ),

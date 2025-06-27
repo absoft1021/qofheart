@@ -101,7 +101,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   width: 4,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: item['status'] == 1 ? Colors.red : Colors.green,
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                 ),

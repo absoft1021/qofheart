@@ -47,12 +47,15 @@ class PurchaseController extends GetxController {
           "amount": amount,
         },
       ),
-      headers: {'Token': box.read('token'), 'Content-Type': 'application/json'},
+      headers: {
+          "Authorization": "Token ${box.read('token') ?? ''}",
+          "Content-Type": "application/json",
+        },
     );
     Get.back();
     Map data = jsonDecode(response.body);
     if (data["status"] == "success") {
-      Abdialog().showDialog(data['msg'], true);
+      Abdialog().showDialog('You have purchased N$amount to $phone successfully', true);
     } else {
       Abdialog().showDialog(data['msg'], false);
     }

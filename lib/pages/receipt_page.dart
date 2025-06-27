@@ -42,11 +42,11 @@ class ReceiptPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _receiptItem(Icons.verified, "Status", "Successful", Colors.green),
+                      _receiptItem(Icons.verified, "Status", arguments['status'] == 1 ? "failed" : "Successful", arguments['status'] == 1 ? Colors.red : Colors.green),
                       _receiptItem(Icons.attach_money, "Amount", "NGN ${arguments['amount'] ?? ''}"),
                       _receiptItem(Icons.description_outlined, "Description", arguments['desc'] ?? ''),
                       _receiptItem(Icons.account_balance_wallet_outlined, "Old Balance", "NGN ${arguments['oldbal'] ?? ''}"),
-                      _receiptItem(Icons.savings_outlined, "New Balance", "NGN ${arguments['newBal'] ?? ''}"),
+                      _receiptItem(Icons.savings_outlined, "New Balance", "NGN ${arguments['newbal'] ?? ''}"),
                       _receiptItem(Icons.calendar_today_outlined, "Date", arguments['date'] ?? ''),
                     ],
                   ),
