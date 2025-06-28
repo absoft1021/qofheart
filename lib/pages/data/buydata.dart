@@ -115,24 +115,10 @@ class _BuydataState extends State<Buydata> {
                 children: [
                   Text('Data Plan', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 10),
+
                   GetBuilder<BuydataController>(
-                    builder: (c) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey.shade300),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.15),
-                              blurRadius: 6,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: DropdownMenu<Map>(
+                  builder: (c) {
+                  return DropdownMenu<Map>(
                           width: Get.width - 56,
                           hintText: 'Select Data Plan',
                           textStyle: GoogleFonts.poppins(
@@ -163,9 +149,8 @@ class _BuydataState extends State<Buydata> {
                             c.planId = value?['PlanId'].toString() ?? '';
                             c.planName = value?['PlanName'].toString() ?? '';
                           },
-                        ),
-                      );
-                    },
+                        );
+                      },
                   ),
                 ],
               ),
