@@ -13,8 +13,8 @@ class DataNetwork extends StatelessWidget {
     final box = GetStorage();
     List net = [
       {'id': 1, 'title': 'MTN', 'logo': 'assets/images/mtn.jpg'},
-      {'id': 2, 'title': 'Airtel', 'logo': 'assets/images/airtelx.jpg'},
-      {'id': 3, 'title': 'Glo', 'logo': 'assets/images/glo.jpg'},
+      {'id': 2, 'title': 'Glo', 'logo': 'assets/images/glo.jpg'},
+      {'id': 3, 'title': 'Airtel', 'logo': 'assets/images/airtelx.jpg'},
       {'id': 4, 'title': '9Mobile', 'logo': 'assets/images/mobile.jpg'},
     ];
 
