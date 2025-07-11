@@ -14,8 +14,8 @@ class DataNetwork extends StatelessWidget {
     List net = [
       {'id': 1, 'title': 'MTN', 'logo': 'assets/images/mtn.jpg'},
       {'id': 2, 'title': 'Glo', 'logo': 'assets/images/glo.jpg'},
-      {'id': 3, 'title': 'Airtel', 'logo': 'assets/images/airtelx.jpg'},
-      {'id': 4, 'title': '9Mobile', 'logo': 'assets/images/mobile.jpg'},
+      {'id': 3, 'title': '9Mobile', 'logo': 'assets/images/mobile.jpg'},
+      {'id': 4, 'title': 'Airtel', 'logo': 'assets/images/airtelx.jpg'}
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
