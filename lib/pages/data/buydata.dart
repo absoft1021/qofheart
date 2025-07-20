@@ -13,12 +13,13 @@ class Buydata extends StatefulWidget {
 class _BuydataState extends State<Buydata> {
   final c = Get.put(BuydataController());
   var args = Get.arguments;
-
-  @override
-  void initState() {
-    super.initState();
-    c.dataPlans(context, args, "");
-  }
+  
+@override
+void initState() {
+  super.initState();
+  c.networkId.value = args;
+  c.dataPlans(context, args, "");
+}
 
   @override
   Widget build(BuildContext context) {
