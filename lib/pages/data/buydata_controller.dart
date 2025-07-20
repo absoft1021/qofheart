@@ -9,6 +9,7 @@ import 'package:qofheart/components/local_auth_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:math';
 import 'package:custom_pin_keyboard/custom_pin_keyboard.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -26,18 +27,18 @@ class BuydataController extends GetxController with StateMixin {
   var mtnLabels = [];
   List companies = [
     {"id": "1", "title": "MTN", "logo": "assets/images/mtn.jpg"},
-    {"id": "2", "title": "AIRTEL", "logo": "assets/images/airtelx.jpg"},
-    {"id": "3", "title": "GLO", "logo": "assets/images/glo.jpg"},
-    {"id": "4", "title": "9MOBILE", "logo": "assets/images/mobile.jpg"},
+    {"id": "2", "title": "GLO", "logo": "assets/images/glo.jpg"},
+    {"id": "3", "title": "9MOBILE", "logo": "assets/images/mobile.jpg"},
+    {"id": "4", "title": "AIRTEL", "logo": "assets/images/airtelx.jpg"},
   ];
   var position = (-1).obs;
 
   
   List net = [
     'assets/images/mtn.jpg',
-    'assets/images/airtelx.jpg',
     'assets/images/glo.jpg',
-    'assets/images/mobile.jpg'
+    'assets/images/mobile.jpg',
+    'assets/images/airtelx.jpg',
   ];
   changePosition(int pos) {
     position.value = pos;
@@ -181,39 +182,52 @@ class BuydataController extends GetxController with StateMixin {
       ),
     );
   }
+  
+Future<void> buyData(
+  BuildContext context,
+  String phone,
+  String netId,
+  String plan,
+  String planN,
+  bool ported,
+) async {
+  try {
+    LoadingDialog(context: context).showLoading();
 
-  Future<void> buyData(BuildContext context, String phone, String netId,
-    String plan, String planN, bool ported) async {
-    try {
-      LoadingDialog(context: context).showLoading();
-  
-      final response = await http.post(
-        Uri.parse('https://www.qofheart.com/api/data/'),
-        body: json.encode({
-          "phone": phone,
-          "network": netId,
-          "plan": plan,
-          "ported_number": ported
-        }),
-        headers: {
-          "Authorization": "Token ${box.read('token') ?? ''}",
-          "Content-Type": "application/json",
-        },
+    // Generate random reference, e.g., DATA_522671
+    final random = Random();
+    final ref = "DATA_${random.nextInt(900000) + 100000}"; // 6-digit random number
+
+    final response = await http.post(
+      Uri.parse('https://www.qofheart.com/api/data/'),
+      body: json.encode({
+        "mobile_number": phone,
+        "network": netId,
+        "plan": plan,
+        "Ported_number": ported,
+        "ref": ref, // use the generated ref
+      }),
+      headers: {
+        "Authorization": "Token ${box.read('token') ?? ''}",
+        "Content-Type": "application/json",
+      },
+    );
+
+    Get.back(); // Close loading
+
+    final data = jsonDecode(response.body);
+
+    if (data["status"] == "success") {
+      Abdialog().showDialog(
+        "You have purchased $planN to $phone successfully",
+        true,
       );
-  
-      Get.back(); // Close loading
-  
-      final data = jsonDecode(response.body);
-  
-      if (data["status"] == "success") {
-        Abdialog().showDialog("You have purchased $planN to $phone successfully", true);
-      } else {
-        Abdialog().showDialog(data['msg'] ?? "Transaction failed", false);
-      }
-  
-    } catch (e) {
-      Get.back(); // Ensure dialog closes
-      Abdialog().showDialog("Network error: $e", false);
+    } else {
+      Abdialog().showDialog(data['msg'] ?? "Transaction failed", false);
     }
+  } catch (e) {
+    Get.back(); // Ensure dialog closes
+    Abdialog().showDialog("Network error: $e", false);
   }
+}
 }
