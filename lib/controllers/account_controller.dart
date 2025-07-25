@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:qofheart/components/pin_code.dart';
 import 'package:qofheart/views/login_page.dart';
 import 'package:qofheart/views/main_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AccountController extends GetxController {
   final box = GetStorage();
@@ -18,6 +19,15 @@ class AccountController extends GetxController {
   RxString kyc = "1".obs;
   RxString userName = "".obs;
   Map user = {};
+  
+  openUrl(String link) async {
+    var url = Uri.parse(link);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Failed to lunch $url';
+    }
+  }
 
   Future<void> login(BuildContext context, String phone, String password) async {
     const url = 'https://www.qofheart.com/api/app/app_login.php';
@@ -94,16 +104,18 @@ class AccountController extends GetxController {
         final dialogType = data['status'] == "success" ? DialogType.success : DialogType.error;
 
         AwesomeDialog(
-          context: context,
-          dialogType: dialogType,
-          animType: AnimType.rightSlide,
-          title: data['status'] == "success" ? "Registered" : "Error Message",
-          desc: data['msg'],
-          btnOkOnPress: data['status'] == "success"
-              ? () => Get.to(() => LoginPage())
-              : null,
-          btnCancelOnPress: data['status'] == "fail" ? () => Get.back() : null,
-        ).show();
+									  context: context,
+									  dialogType: dialogType,
+									  animType: AnimType.rightSlide,
+									  title: data['status'] == "success" ? "Registered" : "Error Message",
+									  desc: data['msg'],
+								  btnOkText: data['status'] == "success" ? "Login" : "OK",
+								  btnCancelText: "Close",
+								  btnOkOnPress: data['status'] == "success"
+								      ? () => Get.to(() => LoginPage())
+								      : null,
+								  btnCancelOnPress: () {},
+								).show();
       } else {
         Get.snackbar('Message', res.body);
       }

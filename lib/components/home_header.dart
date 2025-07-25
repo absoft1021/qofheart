@@ -118,7 +118,7 @@ class WalletBalanceSection extends StatelessWidget {
             }
             return TextButton(
               onPressed: () {
-                //Get.to(() => KycPage());
+                hctrl.openUrl("https://qofheart.com/mobile/home/fund-wallet");
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -129,7 +129,7 @@ class WalletBalanceSection extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
               child: Text(
-                'No account number',
+                'Generate Account',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
