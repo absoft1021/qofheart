@@ -117,7 +117,7 @@ class LoginPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () => controller.openUrl(",https://qofheart.com/mobile/recovery/"),
+                        onPressed: () => controller.openUrl("https://qofheart.com/mobile/recovery/"),
                         child: Text(
                           'Forgot Password?',
                           style: GoogleFonts.poppins(
